@@ -1,0 +1,16 @@
+version: "3"
+services:
+    database:
+        container_name: eldorado-postgres
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: 12345678
+    web:
+        build: .
+        volumes:
+          - .:/code
+        ports:
+          - "8000:8000"
+        depends_on:
+          - database
